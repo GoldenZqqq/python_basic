@@ -12,7 +12,3 @@ def total(*args):
     for i in args:
         result += i**2
     return result
-
-
-print(add(3, 4))
-print(total(1, 2, 3, 4))
