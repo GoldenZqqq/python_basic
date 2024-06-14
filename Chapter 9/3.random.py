@@ -14,7 +14,7 @@ print(random.choice(list1))
 print(random.choice("hello"))
 
 # 生成一个随机验证码
-from my_package import my_tools
+from my_package import my_tools, my_games
 
 print(my_tools.generate_valid_code(5))
 
@@ -22,3 +22,4 @@ print(my_tools.generate_valid_code(5))
 # 打乱原列表
 random.shuffle(list1)
 print(list1)
+my_games.guess_number(1, 1000)
