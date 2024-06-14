@@ -38,28 +38,43 @@ def new_card(name, phone, qq, email):
     return True
 
 
+def modify_card(name, phone, qq, email):
+    # TODO: modify card
+    pass
+
+
+def del_card(card):
+    cards.remove(card)
+    return True
+
+
 def show_card():
     for card in cards:
-        print("*" * 30)
-        print(
-            """姓名：%s
-电话：%s
-QQ：%s
-邮箱：%s"""
-            % (card["name"], card["phone"], card["qq"], card["email"])
-        )
-        print("*" * 30)
+        print_card(card)
 
 
-def query_card():
+def query_card(kw):
     for card in cards:
         for k, v in card.items():
             if kw == v:
                 return card
+    return False
 
 
 def quit():
     print("欢迎下次使用")
+
+
+def print_card(card):
+    print("*" * 30)
+    print(
+        """姓名：%s
+电话：%s
+QQ：%s
+邮箱：%s"""
+        % (card["name"], card["phone"], card["qq"], card["email"])
+    )
+    print("*" * 30)
 
 
 menu()
@@ -81,6 +96,27 @@ while True:
     elif op == "3":
         kw = input("请输入查询的关键字：")
         result = query_card(kw)
+        if result:
+            print_card(result)
+            op2 = input("输入4修改名片，输入5删除名片：")
+            if op2 == "4":
+                name = input("请修改你的姓名（原：%s）：" % result["name"])
+                phone = input("请修改你的电话号码（原：%s：" % result["phone"])
+                qq = input("请修改你的QQ号码（原：%s：" % result["qq"])
+                email = input("请修改你的邮箱地址（原：%s：" % result["email"])
+                oprResult = modify_card(result)
+                if oprResult:
+                    print("名片修改成功！")
+                else:
+                    print("名片修改失败，请重试！")
+            elif op2 == "5":
+                oprResult = del_card(result)
+                if oprResult:
+                    print("名片删除成功！")
+                else:
+                    print("名片删除失败，请重试！")
+        else:
+            print("没有找到相关信息，请重试！")
     elif op == "0":
         quit()
         break
