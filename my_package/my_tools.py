@@ -1,4 +1,5 @@
 import random
+import re
 
 
 def random_char(upper=True):
@@ -18,6 +19,24 @@ def random_string(length):
 
 def generate_valid_code(length):
     return random_string(length)
+
+
+def is_phone_number(phone):
+    # 手机号码
+    result = re.match(r"^1\d{10}$", phone)
+    if result == None:
+        return "非法的手机号！"
+    return "正确的手机号！"
+
+
+def is_id_number(ids):
+    # 身份证号
+    result = re.match(
+        r"^\d{6}((20[01]\d)|(202[01234])|(1[89]\d\d))\d{7}[\dX]$", "12345620081234567X"
+    )
+    if result == None:
+        return "非法的身份证号！"
+    return "正确的身份证号！"
 
 
 def main():
