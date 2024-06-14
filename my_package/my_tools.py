@@ -1,5 +1,4 @@
-import random
-import re
+import random, re, time
 
 
 def random_char(upper=True):
@@ -37,6 +36,11 @@ def is_id_number(ids):
     if result == None:
         return "非法的身份证号！"
     return "正确的身份证号！"
+
+
+def get_time():
+    s = time.strftime("%Y-%m-%d %H:%M:%S")  # 格式化
+    return s
 
 
 def main():
