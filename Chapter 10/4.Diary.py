@@ -4,18 +4,16 @@ filename = "Chapter 10/日记本.txt"
 def write_txt():
     date = input("请输入日期：")
     text = input("请输入日记内容：")
-    f = open(filename, mode="a", encoding="utf-8")
-    f.write("pyrjb\n")
-    f.write(date + "\n")
-    f.write(text + "\n")
-    f.close()
+    with open(filename, mode="a", encoding="utf-8") as f:
+        f.write("pyrjb\n")
+        f.write(date + "\n")
+        f.write(text + "\n")
     return True
 
 
 def read_txt(day="-1"):
-    f = open(filename, mode="r", encoding="utf-8")
-    context = f.read()
-    f.close()
+    with open(filename, mode="r", encoding="utf-8") as f:
+        context = f.read()
 
     if day != "-1":
         lista = context.split("pyrjb\n")
