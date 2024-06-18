@@ -19,7 +19,6 @@ class weapon(object):
         self.name = name
         self.damage = damage
         self.level = level
-        pass
 
 
 gun = weapon("AK47", 1000, 3)
