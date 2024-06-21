@@ -8,14 +8,29 @@ class MyFrame(wx.Frame):
 
     # 构造方法
     def __init__(self):
-        super().__init__(None, title="抽奖器")
+        super().__init__(None, title="抽奖器", pos=(100, 100), size=(400, 600))
         # 创建面板
-        self.pl = wx.Panel(self)
+        self.pl = wx.Panel(self, pos=(0, 0), size=(400, 600))
+        # 设置背景颜色
+        # self.SetBackgroundColour(wx.BLUE)
+        # self.SetBackgroundColour((200, 255, 0))
+        self.SetBackgroundColour("#00ff00")
         # 创建静态文本
-        self.staticText = wx.StaticText(self.pl, label=random.choice(self.NameList))
+        self.staticText = wx.StaticText(
+            self.pl,
+            label=random.choice(self.NameList),
+            pos=(0, 50),
+            size=(400, 100),
+            style=wx.TE_CENTER,
+        )
+        # 创建字体
+        # 字体大小，字体包，字体风格，是否加粗
+        font = wx.Font(48, wx.FONTFAMILY_SWISS, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD)
+        # 静态文本设置成创建的字体
+        self.staticText.SetFont(font)
         # 创建按钮
-        self.btn1 = wx.Button(self.pl, label="开始抽奖", pos=(100, 150))
-        self.btn2 = wx.Button(self.pl, label="结束抽奖", pos=(200, 150))
+        self.btn1 = wx.Button(self.pl, label="开始抽奖", pos=(100, 200))
+        self.btn2 = wx.Button(self.pl, label="结束抽奖", pos=(200, 200))
         # 绑定事件
         self.Bind(wx.EVT_BUTTON, self.onClick, self.btn1)
         self.Bind(wx.EVT_BUTTON, self.stop, self.btn2)
