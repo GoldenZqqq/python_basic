@@ -10,13 +10,13 @@ class MyFrame(wx.Frame):
     def __init__(self):
         # 创建窗口
         wx.Frame.__init__(
-            self, None, title="简单计算器", pos=(100, 100), size=(500, 800)
+            self, None, title="简单计算器", pos=(100, 100), size=(270, 420)
         )
         # 创建面板
-        self.pl = wx.Panel(self, pos=(0, 0), size=(500, 800))
+        self.pl = wx.Panel(self, pos=(0, 0), size=(270, 400))
         # 创建文本框
         self.entry = wx.TextCtrl(
-            self.pl, pos=(10, 10), size=(400, 50), style=wx.TE_RIGHT
+            self.pl, pos=(10, 10), size=(230, 50), style=wx.TE_RIGHT
         )
         # 创建按钮
         # 第 1 行
@@ -115,7 +115,7 @@ class MyFrame(wx.Frame):
         )
         self.btn_eq = wx.Button(
             self.pl,
-            label="1",
+            label="=",
             pos=(self.pos_x + 180, self.pos_y + 180),
             size=(self.btn_w, self.btn_h),
         )
@@ -124,13 +124,13 @@ class MyFrame(wx.Frame):
             self.pl,
             label="0",
             pos=(self.pos_x, self.pos_y + 240),
-            size=(self.btn_w, self.btn_h),
+            size=(self.btn_w + 60, self.btn_h),
         )
         self.btn_point = wx.Button(
             self.pl,
             label=".",
-            pos=(self.pos_x + 180, self.pos_y + 240),
-            size=(self.btn_w, self.btn_h),
+            pos=(self.pos_x + 120, self.pos_y + 240),
+            size=(self.btn_w + 60, self.btn_h),
         )
 
         # 绑定按钮对应的事件
@@ -152,6 +152,62 @@ class MyFrame(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.On_btn_1, self.btn_1)
         self.Bind(wx.EVT_BUTTON, self.On_btn_0, self.btn_0)
         self.Bind(wx.EVT_BUTTON, self.On_btn_point, self.btn_point)
+
+    def On_btn_clear(self, event):
+        self.entry.Clear()
+
+    def On_btn_back(self, event):
+        self.entry.SetValue(self.entry.GetValue()[:-1])
+
+    def On_btn_add(self, event):
+        self.entry.AppendText("+")
+
+    def On_btn_sub(self, event):
+        self.entry.AppendText("-")
+
+    def On_btn_mul(self, event):
+        self.entry.AppendText("*")
+
+    def On_btn_div(self, event):
+        self.entry.AppendText("/")
+
+    def On_btn_eq(self, event):
+        text = self.entry.GetValue()
+        result = eval(text)
+        self.entry.SetValue(str(result))
+
+    def On_btn_point(self, event):
+        self.entry.AppendText(".")
+
+    def On_btn_9(self, event):
+        self.entry.AppendText("9")
+
+    def On_btn_8(self, event):
+        self.entry.AppendText("8")
+
+    def On_btn_7(self, event):
+        self.entry.AppendText("7")
+
+    def On_btn_6(self, event):
+        self.entry.AppendText("6")
+
+    def On_btn_5(self, event):
+        self.entry.AppendText("5")
+
+    def On_btn_4(self, event):
+        self.entry.AppendText("4")
+
+    def On_btn_3(self, event):
+        self.entry.AppendText("3")
+
+    def On_btn_2(self, event):
+        self.entry.AppendText("2")
+
+    def On_btn_1(self, event):
+        self.entry.AppendText("1")
+
+    def On_btn_0(self, event):
+        self.entry.AppendText("0")
 
 
 if __name__ == "__main__":
