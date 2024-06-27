@@ -34,7 +34,7 @@ links = html.xpath('//div[@class="newlist"]//a/@href')
 # 5.下载并保存所有格言
 for link in links:
     title, content = get_content(link, headers)
-    with open(f"Spider/格言/{title}.txt", "w", encoding="utf-8") as f:
+    with open(f"Spider/txt/{title}.txt", "w", encoding="utf-8") as f:
         f.write(title + "\n\n")
         f.write(content + "\n\n")
         print(f"已下载...{title}")
