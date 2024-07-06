@@ -20,10 +20,19 @@ browser.get(url)
 end = time.time()
 print(f"打开页面的时间：{end - start}")
 
-WebDriverWait()
-next_page = browser.find_element(By.XPATH, '//*[@id="fd_page_bottom"]/div/a[1]')
-next_link = next_page.get_attribute("href")
-print(f"下一页链接：{next_link}")
-next_page.click()
+for i in range(5):
+    locator = (By.XPATH, f'//*[@id="fd_page_bottom"]/div/a[{i+1}]')
+    try:
+        WebDriverWait(browser, 5).until(EC.presence_of_element_located(locator))
+    except:
+        print("未找到指定元素")
+        browser.close()
+        exit()
+    next_page = browser.find_element(
+        By.XPATH, f'//*[@id="fd_page_bottom"]/div/a[{i+1}]'
+    )
+    next_link = next_page.get_attribute("href")
+    print(f"下一页链接：{next_link}")
+    next_page.click()
 
 browser.close()
