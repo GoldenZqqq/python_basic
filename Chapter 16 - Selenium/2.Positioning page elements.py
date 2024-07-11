@@ -9,8 +9,8 @@ from selenium.webdriver.common.keys import Keys
 url = "https://www.lagou.com"
 service = Service()
 opt = Options()
-opt.add_experimental_option("detach", True)
-opt.add_argument("--dsiable-blink-features=AutomationControlled")
+opt.add_experimental_option("detach", True)  # 程序结束不自动关闭浏览器
+opt.add_argument("--dsiable-blink-features=AutomationControlled")  # 隐藏浏览器痕迹
 browser = webdriver.Chrome(service=service, options=opt)
 browser.maximize_window()
 browser.get(url)

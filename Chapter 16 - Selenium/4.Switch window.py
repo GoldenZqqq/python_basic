@@ -9,8 +9,8 @@ from selenium.webdriver.support import expected_conditions as EC
 
 service = Service()
 opt = Options()
-opt.add_experimental_option("detach", True)
-opt.add_argument("--dsiable-blink-features=AutomationControlled")
+opt.add_experimental_option("detach", True)  # 程序结束不自动关闭浏览器
+opt.add_argument("--dsiable-blink-features=AutomationControlled")  # 隐藏浏览器痕迹
 opt.page_load_strategy = "eager"
 browser = webdriver.Chrome(service=service, options=opt)
 
